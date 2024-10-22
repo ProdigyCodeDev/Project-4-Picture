@@ -5,10 +5,10 @@
  * EECS 183
  * Project 4: CoolPics
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * Chen Li
+ * lichenlc
  *
- * <#Description#>
+ * The implementations of Graphics class.
  */
 
 #include <iostream>
@@ -52,7 +52,6 @@ void Graphics::initArray() {
         }
     }
 }
-
 
 
 // Your code goes above this line.
