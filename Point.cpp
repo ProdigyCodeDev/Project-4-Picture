@@ -50,8 +50,8 @@ int Point::getY() {
 
 // Reads a point from the input stream and calls checkRange().
 void Point::read(istream &ins) {
-    char ch;
-    ins >> ch >> x >> ch >> y >> ch;
+    char character;
+    ins >> character >> x >> character >> y >> character;
     x = checkRange(x);
     y = checkRange(y);
 }
