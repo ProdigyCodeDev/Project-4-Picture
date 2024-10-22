@@ -5,10 +5,10 @@
  * EECS 183
  * Project 4: CoolPics
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * Chen Li
+ * lichenlc
  *
- * <#Description#>
+ * The implementations of Point class.
  */
 
 #include "Point.h"
@@ -16,9 +16,65 @@
 // for the declaration of DIMENSION
 #include "utility.h"
 
-// TODO: implement two constructors, setX, getX, setY, getY, read, write, checkRange.
+// Initializes the point to the origin (0, 0).
+Point::Point() {
+    x = 0;
+    y = 0;
+}
 
+// Initializes the point with the given x and y values.
+Point::Point(int xVal, int yVal) {
+    x = xVal;
+    y = yVal;
+}
 
+// Sets the x coordinate of the point.
+void Point::setX(int xVal) {
+    x = xVal;
+}
+
+// Returns the current x coordinate of the point.
+int Point::getX() {
+    return x;
+}
+
+// Sets the y coordinate of the point.
+void Point::setY(int yVal) {
+    y = yVal;
+}
+
+// Returns the current y coordinate of the point.
+int Point::getY() {
+    return y;
+}
+
+// Reads a point from the input stream and calls checkRange().
+void Point::read(istream &ins) {
+    char ch;
+    ins >> ch >> x >> ch >> y >> ch;
+    checkRange(x);
+    checkRange(y);
+}
+
+// Writes the point to the output stream in the format (x, y).
+void Point::write(ostream &outs) {
+    outs << "(" << x << "," << y << ")";
+}
+
+// If the value is less than 0, returns 0.
+// If the value is greater than or equal to DIMENSION, returns DIMENSION - 1.
+// Otherwise, returns the original value.
+int Point::checkRange(int val) {
+    if (val < 0) {
+        return 0;
+    }
+    else if (val >= DIMENSION) {
+        return DIMENSION - 1;
+    }
+    else {
+        return val;
+    }
+}
 
 // Your code goes above this line.
 // Don't change the implementations below!
