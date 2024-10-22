@@ -22,7 +22,36 @@
 
 using namespace std;
 
-// TODO: implement constructor, clear, setPixel, initArray.
+// Initializes the pixelData array to set all pixels to balck.
+Graphics::Graphics() {
+    for (int x = 0; x < DIMENSION; x++) {
+        for (int y = 0; y < DIMENSION; y++) {
+            pixelData[x][y] = Color();
+        }
+    }
+}
+
+// Calls the private method initArray.
+void Graphics::clear() {
+    initArray();
+}
+
+// Sets the color at (x, y) coordinates within the bounds [0, DIMENSION).
+void Graphics::setPixel(int x, int y, Color color) {
+    if (x >= 0 && y >= 0 && x < DIMENSION && y < DIMENSION) {
+        pixelData[y][x] = color;
+    }
+}
+
+// Initializes the pixelData array by setting all pixels to black.
+void Graphics::initArray() {
+    Color black(0, 0, 0);
+    for (int x = 0; x < DIMENSION; x++) {
+        for (int y = 0; y < DIMENSION; y++) {
+            pixelData[x][y] = black;
+        }
+    }
+}
 
 
 
