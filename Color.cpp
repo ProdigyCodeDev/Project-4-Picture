@@ -20,7 +20,7 @@ Color::Color() {
 	int red = 0;
 	int green = 0;
 	int blue = 0;
-};
+}
 
 Color::Color(int redVal, int greenVal, int blueVal) {
 	Color::setRed(redVal);
