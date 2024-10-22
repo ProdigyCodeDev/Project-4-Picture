@@ -18,19 +18,19 @@
 
 // Initializes the point to the origin (0, 0).
 Point::Point() {
-    x = 0;
-    y = 0;
+    x = checkRange(0);
+    y = checkRange(0);
 }
 
 // Initializes the point with the given x and y values.
 Point::Point(int xVal, int yVal) {
-    x = xVal;
-    y = yVal;
+    x = checkRange(xVal);
+    y = checkRange(yVal);
 }
 
 // Sets the x coordinate of the point.
 void Point::setX(int xVal) {
-    x = xVal;
+    x = checkRange(xVal);
 }
 
 // Returns the current x coordinate of the point.
@@ -40,7 +40,7 @@ int Point::getX() {
 
 // Sets the y coordinate of the point.
 void Point::setY(int yVal) {
-    y = yVal;
+    y = checkRange(yVal);
 }
 
 // Returns the current y coordinate of the point.
@@ -52,8 +52,8 @@ int Point::getY() {
 void Point::read(istream &ins) {
     char ch;
     ins >> ch >> x >> ch >> y >> ch;
-    checkRange(x);
-    checkRange(y);
+    x = checkRange(x);
+    y = checkRange(y);
 }
 
 // Writes the point to the output stream in the format (x, y).
