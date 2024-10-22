@@ -20,7 +20,7 @@ Color::Color() {
 	int red = 0;
 	int green = 0;
 	int blue = 0;
-}
+};
 
 Color::Color(int redVal, int greenVal, int blueVal) {
 	Color::setRed(redVal);
@@ -55,6 +55,9 @@ int Color::getBlue() {
 
 void Color::read(istream& ins) {
 	ins >> red >> green >> blue;
+	checkRange(red);
+	checkRange(green);
+	checkRange(blue);
 }
 /**
    * Requires: outs is in good state.
@@ -95,4 +98,3 @@ ostream& operator << (ostream& outs, Color color)
    color.write(outs);
    return outs;
 }
-
