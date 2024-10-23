@@ -18,8 +18,64 @@
 #include <algorithm>
 using namespace std;
 
-// TODO: implement two constructors, setCenter, getCenter, setColor, getColor,
-//       setRadius, getRadius, read, write.
+// Initializes the circle with a default center
+Circle::Circle() {
+    center;
+    radius = 0;
+    color;
+}
+
+// Initializes the circle with a specified center, radius, and color.
+Circle::Circle(Point pt, int r, Color c) {
+    center = pt;
+    radius = checkRadius(r);
+    color = c;
+}
+
+// Sets the center of the circle to the specified point.
+void Circle::setCenter(Point pt) {
+    center = pt;
+    return;
+}
+
+// Returns the center point of the circle.
+Point Circle::getCenter() {
+    return center;
+}
+
+// Sets the radius of the circle by using checkRadius.
+void Circle::setRadius(int r) {
+    radius = checkRadius(r);
+    return;
+}
+
+// Returns the radius of the circle.
+int Circle::getRadius() {
+    return radius;
+}
+
+// Sets the color of the circle to the specified color.
+void Circle::setColor(Color c) {
+    color = c;
+    return;
+}
+
+// Returns the color of the circle.
+Color Circle::getColor() {
+    return color;
+}
+
+// Reads the circle's center, radius, and color from input stream.
+void Circle::read(istream &ins) {
+    ins >> center >> radius >> color;
+    return;
+}
+
+// Writes the circle's center, radius, and color to output stream.
+void Circle::write(ostream &outs) {
+    outs << center << " " << radius << " " << color;
+}
+
 
 
 
