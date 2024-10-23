@@ -18,12 +18,109 @@
 #include <algorithm>
 using namespace std;
 
-// TODO: implement two constructors, setStart, getStart, setEnd, getEnd,
-//       setColor, setColorTopLeft, getColorTopLeft, setColorTopRight,
-//       getColorTopRight, setColorBottomRight, getColorBottomRight,
-//       setColorBottomLeft, getColorBottomLeft, read, write.
+// Initialize the points to (0,0) and sets all corner colors to default.
+Rectangle::Rectangle() {
+    Point pt1(0, 0);
+    Point pt2(0, 0);
+    start = pt1;
+    end = pt2;
+    colorTopLeft = Color();
+    colorTopRight = Color();
+    colorBottomLeft = Color();
+    colorBottomRight = Color();
+}
 
+// Initialize the start and end points, and the colors for all four corners.
+Rectangle::Rectangle(Point pt1, Point pt2, Color cTopLeft, Color cTopRight,
+                     Color cBottomRight, Color cBottomLeft) {
+    start = pt1;
+    end = pt2;
+    
+    colorTopLeft = cTopLeft;
+    colorTopRight = cTopRight;
+    colorBottomLeft = cBottomLeft;
+    colorBottomRight = cBottomRight;
+}
 
+// Set the starting point of the rectangle.
+void Rectangle::setStart(Point pt) {
+    start = pt;
+}
+
+// Return the starting point of the rectangle.
+Point Rectangle::getStart() {
+    return start;
+}
+
+// Set the ending point of the rectangle.
+void Rectangle::setEnd(Point pt) {
+    end = pt;
+}
+
+// Return the ending point of the rectangle.
+Point Rectangle::getEnd() {
+    return end;
+}
+
+// Set all four corner colors to the specified color.
+void Rectangle::setColor(Color color) {
+    colorTopLeft = color;
+    colorTopRight = color;
+    colorBottomRight = color;
+    colorBottomLeft = color;
+}
+
+// Set the color of the top-left corner of the rectangle.
+void Rectangle::setColorTopLeft(Color color) {
+    colorTopLeft = color;
+}
+
+// Return the color of the top-left corner of the rectangle.
+Color Rectangle::getColorTopLeft() {
+    return colorTopLeft;
+}
+
+// Set the color of the top-right corner of the rectangle.
+void Rectangle::setColorTopRight(Color color) {
+    colorTopRight = color;
+}
+
+// Return the color of the top-right corner of the rectangle.
+Color Rectangle::getColorTopRight() {
+    return colorTopRight;
+}
+
+// Set the color of the bottom-right corner of the rectangle.
+void Rectangle::setColorBottomRight(Color color) {
+    colorBottomRight = color;
+}
+
+// Return the color of the bottom-right corner of the rectangle.
+Color Rectangle::getColorBottomRight() {
+    return colorBottomRight;
+}
+
+// Set the color of the bottom-left corner of the rectangle.
+void Rectangle::setColorBottomLeft(Color color) {
+    colorBottomLeft = color;
+}
+
+// Return the color of the bottom-left corner of the rectangle.
+Color Rectangle::getColorBottomLeft() {
+    return colorBottomLeft;
+}
+
+// Read the start&end points and four corners's colos from the input stream.
+void Rectangle::read(istream &ins) {
+    ins >> start >> end >> colorTopLeft >> colorTopRight
+    >> colorBottomRight >> colorBottomLeft;
+}
+
+// Write the start&end points and four corners's colos to the output stream.
+void Rectangle::write(ostream &outs) {
+    outs << start << " " << end << " " << colorTopLeft << " " << colorTopRight
+    << " " << colorBottomRight << " " << colorBottomLeft;
+}
 
 // Your code goes above this line.
 // Don't change the implementations below!
