@@ -68,7 +68,7 @@ Color Circle::getColor() {
 // Reads the circle's center, radius, and color from input stream.
 void Circle::read(istream &ins) {
     ins >> center >> radius >> color;
-    return;
+    radius = checkRadius(radius);
 }
 
 // Writes the circle's center, radius, and color to output stream.
