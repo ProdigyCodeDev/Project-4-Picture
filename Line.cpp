@@ -14,13 +14,68 @@
 #include "Line.h"
 #include "Graphics.h"
 
-// TODO: implement two Line constructors, setStart, getStart, setEnd,
-//       getEnd, setColor, getColor, read, write.
+ // TODO: implement two Line constructors, setStart, getStart, setEnd,
+ //       getEnd, setColor, getColor, read, write.
+
+Line::Line() {
+    Point start;
+    Point end;
+    Color lineColor;
+
+}
+
+Line::Line(Point pt1, Point pt2, Color color) {
+    Line::setStart(pt1);
+    Line::setEnd(pt2);
+    Line::setColor(color);
+}
+
+void Line::setStart(Point pt) {
+    start = pt;
+
+}
+
+Point Line::getStart() {
+    return start;
+
+}
+void Line::setEnd(Point pt) {
+    end = pt;
+
+}
+
+
+Point Line::getEnd() {
+    return end;
+
+}
+
+void Line::setColor(Color color) {
+    lineColor = color;
+
+}
+
+Color Line::getColor() {
+    return lineColor;
+}
+
+void Line::read(istream& ins){
+    ins >> start >> end >> lineColor;
+}
+
+void Line::write(ostream& outs) {
+    outs << start << " " <<  end << " " << lineColor << endl;
+
+}
+
+void Line::draw(Graphics& drawer) {
+
+}
 
 
 
-// Your code goes above this line.
-// Don't change the implementations below!
+ // Your code goes above this line.
+ // Don't change the implementations below!
 
 istream& operator >> (istream& ins, Line& line)
 {
@@ -34,7 +89,7 @@ ostream& operator << (ostream& outs, Line line)
     return outs;
 }
 
-void Line::draw(Graphics &drawer)
+void Line::draw(Graphics& drawer)
 {
     /**
      * This function is based on the Bresenham's line algorithm and is highly
@@ -93,12 +148,12 @@ void Line::draw(Graphics &drawer)
     }
 
 
-    int dy            = p2y - p1y;  // y-increment from p1 to p2
-    int dx            = p2x - p1x;  // x-increment from p1 to p2
-    int dy2           = (dy << 1);  // dy << 1 == 2*dy  i.e., bit shifting
-    int dx2           = (dx << 1);
+    int dy = p2y - p1y;  // y-increment from p1 to p2
+    int dx = p2x - p1x;  // x-increment from p1 to p2
+    int dy2 = (dy << 1);  // dy << 1 == 2*dy  i.e., bit shifting
+    int dx2 = (dx << 1);
     int dy2_minus_dx2 = dy2 - dx2;  // precompute constant for speed up
-    int dy2_plus_dx2  = dy2 + dx2;
+    int dy2_plus_dx2 = dy2 + dx2;
 
 
     if (dy >= 0)    // m >= 0
