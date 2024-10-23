@@ -68,9 +68,7 @@ void Line::write(ostream& outs) {
 
 }
 
-void Line::draw(Graphics& drawer) {
 
-}
 
 
 
