@@ -133,25 +133,83 @@ void coolPics()
     return;
 }
 
+// Writes the current drawing on the Graphics canvas to a BMP file.
 void writeFile(const Graphics& drawer)
 {
-    // TODO: implement
-    // This will make use of Graphics::writeFile()
+    string fileName;
+    cin >> fileName;
+    fileName += ".bmp";
+    
+    drawer.writeFile(fileName);
+    cout << "[Wrote " << fileName << "]" << endl;
 }
 
+// Loads shapes from a file and draws them on the Graphics canvas.
 void loadFile(Graphics& drawer)
 {
-    // TODO: implement
+    ifstream file;
+    string fileName = openFile(file);
+    char shapeType;
+    
+    drawer.clear();
+    
+    while (file >> shapeType) {
+            if (shapeType == 'L') {
+                Point pt1, pt2;
+                Color color;
+                file >> pt1 >> pt2 >> color;
+                Line line(pt1, pt2, color);
+                line.draw(drawer);
+            }
+            else if (shapeType == 'C') {
+                Point center;
+                int radius;
+                Color color;
+                file >> center >> radius >> color;
+                Circle circle(center, radius, color);
+                circle.draw(drawer);
+            }
+            else if (shapeType == 'T') {
+                Point pt1, pt2, pt3;
+                Color color1, color2, color3;
+                file >> pt1 >> color1 >> pt2 >> color2 >> pt3 >> color3;
+                Triangle triangle(pt1, color1, pt2, color2, pt3, color3);
+                triangle.draw(drawer);
+            }
+            else if (shapeType == 'R') {
+                Point p1, p2;
+                Color cTopL, cTopR, cBottomL, cBottomR;
+                file >> p1 >> p2 >> cTopL >> cTopR >> cBottomR >> cBottomL;
+                Rectangle rectangle(p1, p2, cTopL, cTopR, cBottomR, cBottomL);
+                rectangle.draw(drawer);
+            }
+            else {
+                drawer.clear();
+                cout << "[Error in input file: " << shapeType << "]" << endl;
+                file.close();
+                return;
+            }
+        }
+
+        file.close();
+        cout << "[Loaded " << fileName << "]" << endl;
+    }
+
+// Converts an input string to all lowercase characters.
+string tolower(string str) {
+    string newString = "";
+    int length = str.length();
+    for (int i = 0; i < length; i++) {
+        if ((str.at(i) >= 'A') && (str.at(i) <= 'Z')) {
+            char currChar = str.at(i);
+            newString += tolower(currChar);
+        }
+        else {
+            newString += str.at(i);
+        }
+    }
+    return newString;
 }
-
-string tolower(string str)
-{
-    // TODO: implement
-
-    return str;
-}
-
-
 // Don't change the implementations below!
 
 void printMenu()
