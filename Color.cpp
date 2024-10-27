@@ -13,8 +13,8 @@
 
 #include "Color.h"
 
-// TODO: implement first checkRange, then two constructors, setRed, getRed,
-//       setGreen, getGreen, setBlue, getBlue, read, write.
+ // TODO: implement first checkRange, then two constructors, setRed, getRed,
+ //       setGreen, getGreen, setBlue, getBlue, read, write.
 
 Color::Color() {
 	int red = 0;
@@ -74,7 +74,7 @@ int Color::checkRange(int val) {
 	if (val >= 0 && val <= 255) {
 		return val;
 	}
-	else{
+	else {
 		if (val < 0) {
 			return 0;
 		}
@@ -89,12 +89,12 @@ int Color::checkRange(int val) {
 
 istream& operator >> (istream& ins, Color& color)
 {
-   color.read(ins);
-   return ins;
+	color.read(ins);
+	return ins;
 }
 
 ostream& operator << (ostream& outs, Color color)
 {
-   color.write(outs);
-   return outs;
+	color.write(outs);
+	return outs;
 }
