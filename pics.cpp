@@ -1,183 +1,269 @@
 /**
- * test.cpp
+ * pics.cpp
  * Project UID 2e6ea4e086ea6a06753e819c30923369
  *
  * EECS 183
  * Project 4: CoolPics
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * Chen Li, Christopher Purnawan
+ * lichenlc, chrislp
  *
- * Contains functions for testing classes in the project.
+ * Driver for Coolpics project.
  */
-
-#include "Graphics.h"
-#include "Circle.h"
-#include "Color.h"
-#include "Line.h"
-#include "Point.h"
-#include "Rectangle.h"
-#include "Shape.h"
-#include "Triangle.h"
 
 #include <iostream>
 #include <fstream>
-
+#include <string>
 using namespace std;
 
+#include "Line.h"
+#include "Triangle.h"
+#include "Circle.h"
+#include "Rectangle.h"
+#include "Graphics.h"
 
-void test_Circle();
+/**
+ * Requires: Nothing.
+ * Modifies: cout.
+ * Effects:  Prints an opening message.
+ */
+void printOpener();
 
-//mine
-void test_Color();
+/**
+ * Requires: Nothing.
+ * Modifies: cout.
+ * Effects:  Prints a closing message.
+ */
+void printCloser();
 
-//mine
-void test_Line();
+/**
+ * Requires: Nothing.
+ * Modifies: cout.
+ * Effects:  Prints a menu.
+ */
+void printMenu();
 
-void test_Point();
+/**
+ * Requires: ins is in good state.
+ * Modifies: cin, ins.
+ * Effects:  Closes ins if it is open. Keeps reading filename from the user
+ *           (and appends .txt) until the file is successfully opened.
+ *           Returns the name of the file that was opened.
+ */
+string openFile(ifstream& ins);
 
-void test_Rectangle();
-//mine
-void test_Triangle();
+/**
+ * Requires: Nothing.
+ * Modifies: Nothing.
+ * Effects:  Returns str with all of its alphabetical characters lowercased.
+ */
+string tolower(string str);
 
+/**
+ * Requires: Nothing.
+ * Modifies: cin, drawer.
+ * Effects:
+ *     Opens a file
+ *     Start with a blank canvas (drawer)
+ *     Start reading from file.  For each line....
+ *        Read the 1st character to determine shape
+ *        Read the shape:  L reads a line, C reads a circle, T read a triangle
+ *            R reads a rectangle.
+ *            For any other character:
+ *              1. clears drawer 
+ *              2. prints "[Error in input file: " << character already read
+ *                     "]" << endl;
+ *              3. close file
+ *              4. return
+ *        Draw shape on canvas
+ *     Close file
+ *     Print "[Loaded filename]"
+ */
+void loadFile(Graphics& drawer);
 
+/**
+ * Requires: Nothing.
+ * Modifies: cin, cout, drawer.
+ * Effects:
+ *     Read filename from user
+ *     concatenate filename with .bmp
+ *     Write image to file.
+ *     Print "[Wrote filename]"
+ */
+void writeFile(const Graphics& drawer);
 
+void coolPics()
+{
+    Graphics drawer;
+    string command;
+    printOpener();
+    printMenu();
 
+    // read first command from user
+    cin >> command;
+    cout << endl;
+    command = tolower(command);
 
+    // read user's input until he or she quits
+    while (command != "quit")
+    {
+        if (command == "load")
+        {
+            loadFile(drawer);
+        }
+        else if (command == "write")
+        {
+            writeFile(drawer);
+        }
+        else
+        {
+            cout << "Invalid command" << endl << endl;
+        }
 
+        printMenu();
 
-void startTests() {
-    test_Circle();
-    test_Rectangle();
-    test_Color();
-    test_Line();
-    test_Triangle();
-    test_Point();
+        // read next command
+        cin >> command;
+        cout << endl;
+        command = tolower(command);
+    }
 
+    printCloser();
+    
     return;
 }
 
-void test_Circle() {
-    Circle c1;
-    cout << "expected" << c1;
-    Circle c3(Point(3, 3), 5, Color(100, 100, 100));
-    cout << "expected" << c3;
-    Circle c2;
-    c2.setCenter(Point(3, 3));
-    cout << "expected" << c2.getCenter();
-    c2.setRadius(3);
-    cout << "expected" << c2.getRadius();
-    c2.setColor(Color(50, 50, 50));
-    cout << "expected" << c2.getColor();
-    cout << "expected" << c2;
-
-}
-
-
-
-void test_Rectangle() {
-    Rectangle r1;
-    cout << "expected" << r1;
-    Rectangle r2(Point(0, 10), Point(10, 10), Color(0, 0, 0), Color(100, 100, 100), Color(50, 50, 50), Color(100, 100, 100));
-    cout << "expected" << r2;
-    Rectangle r3;
-    r3.setStart(Point(50, 50));
-    r3.setEnd(Point(100, 100));
-    cout << "expected" << r3.getStart();
-    cout << "expected" << r3.getEnd();
-    r3.setColor(Color(100, 100, 100));
-    r3.setColorTopRight(Color(50, 50, 50));
-    r3.setColorTopLeft(Color(50, 50, 50));
+// Writes the current drawing on the Graphics canvas to a BMP file.
+void writeFile(const Graphics& drawer)
+{
+    string fileName;
+    cin >> fileName;
+    fileName += ".bmp";
     
-    r3.setColorBottomRight(Color(50, 50, 50));
-    r3.setColorBottomLeft(Color(50, 50, 50));
-
-    cout << "expected" << r3.getColorBottomRight();
-    cout << "expected" << r3.getColorBottomLeft();
-    cout << "expected" << r3.getColorTopRight();
-    cout << "expected" << r3.getColorTopLeft();
-    cout << "expected" << r3;
-
+    drawer.writeFile(fileName);
+    cout << "[Wrote " << fileName << "]" << endl;
 }
 
-void test_Color() {
-    Color co1;
-    cout << "expected" << co1;
-    Color co2(255, 0, 0);
-    cout << "expected" << co2;
-    Color co3(-100, 300, 150);
-    co1.setRed(130);
-    co1.setGreen(-50);
-    co1.setBlue(300);
-    cout << "expected" << co1.getBlue();
-    cout << "expected" << co1.getGreen();
-    cout << "expected" << co1.getRed();
-    cout << "expected" << co3;
-}
-
-void test_Line() {
-    Line l1;
-    Line l2;
-    l2.setStart(Point (10, 10));
-    cout << "expected" << l2.getStart();
-    l2.setEnd(Point(5,5));
-    cout << "expected" << l2.getEnd();
-    l2.setColor(Color(255,155,0));
-    cout << "expected" << l2.getColor();
-    Line l3(Point(0, 5), Point(4, 3), Color(0, 100, 100));
-    cout << "expected" << l1;
-    cout << "expected" << l2;
-    cout << "expected" << l3;
-}
-
-void test_Triangle() {
-    Triangle t1;
-    Triangle t2;
-    t2.setColor(Color (100,0,100));
-    t2.setVertexOne(Point(0, 100));
-    t2.setVertexTwo(Point(10, 50));
-    t2.setVertexThree(Point(50, 50));
-    cout << "expected" << t2.getVertexOne();
-    cout << "expected" << t2.getVertexTwo();
-    cout << "expected" << t2.getVertexThree();
-    t2.setVertexTwoColor(Color(100, 200, 200));
-    t2.setVertexOneColor(Color(100, 200, 200));
-    t2.setVertexThreeColor(Color(100, 200, 200));
-    cout << "expected" << t2.getVertexOneColor();
-    cout << "expected" << t2.getVertexTwoColor();
-    cout << "expected" << t2.getVertexThreeColor();
+// Loads shapes from a file and draws them on the Graphics canvas.
+void loadFile(Graphics& drawer)
+{
+    ifstream file;
+    string fileName = openFile(file);
+    char shapeType;
     
+    drawer.clear();
+    
+    while (file >> shapeType) {
+            if (shapeType == 'L') {
+                Point pt1, pt2;
+                Color color;
+                file >> pt1 >> pt2 >> color;
+                Line line(pt1, pt2, color);
+                line.draw(drawer);
+            }
+            else if (shapeType == 'C') {
+                Point center;
+                int radius;
+                Color color;
+                file >> center >> radius >> color;
+                Circle circle(center, radius, color);
+                circle.draw(drawer);
+            }
+            else if (shapeType == 'T') {
+                Point pt1, pt2, pt3;
+                Color color1, color2, color3;
+                file >> pt1 >> color1 >> pt2 >> color2 >> pt3 >> color3;
+                Triangle triangle(pt1, color1, pt2, color2, pt3, color3);
+                triangle.draw(drawer);
+            }
+            else if (shapeType == 'R') {
+                Point p1, p2;
+                Color cTopL, cTopR, cBottomL, cBottomR;
+                file >> p1 >> p2 >> cTopL >> cTopR >> cBottomR >> cBottomL;
+                Rectangle rectangle(p1, p2, cTopL, cTopR, cBottomR, cBottomL);
+                rectangle.draw(drawer);
+            }
+            else {
+                drawer.clear();
+                cout << "[Error in input file: " << shapeType << "]" << endl;
+                file.close();
+                return;
+            }
+        }
 
-    Triangle t3(Point(10, 50), Color(0, 0, 0), Point(20, 30), Color(100, 100, 100), Point(30, 50), Color(50, 50, 50));
+        file.close();
+        cout << "[Loaded " << fileName << "]" << endl;
+    }
 
-    cout << "expected" << t1;
-    cout << "expected" << t2;
-    cout << "expected" << t3;
+// Converts an input string to all lowercase characters.
+string tolower(string str) {
+    string newString = "";
+    int length = str.length();
+    for (int i = 0; i < length; i++) {
+        if ((str.at(i) >= 'A') && (str.at(i) <= 'Z')) {
+            char currChar = str.at(i);
+            newString += tolower(currChar);
+        }
+        else {
+            newString += str.at(i);
+        }
+    }
+    return newString;
 }
 
 
+// Don't change the implementations below!
 
-void test_Point() {
-    // test of default constructor
-    Point p1;
-    cout << "Expected: (0,0), actual: " << p1 << endl;
-
-    // test of the non-default constructor
-    Point p2(3, 9);
-    cout << "Expected: (3,9), actual: " << p2 << endl;
-
-    // test of member function: setX()
-    p1.setX(5);
-    // test of member function: setY()
-    p1.setY(3);
-
-    // test of member functions getX() and getY()
-    cout << "Expected: (5,3), actual: ";
-    cout << "( " << p1.getX()
-        << ", " << p1.getY()
-        << " )" << endl;
-
-    return;
+void printMenu()
+{
+    cout << "Command:            Description:" << endl
+         << "--------            ------------" << endl
+         << "load filename       Loads data from a txt file" << endl
+         << "write filename      Creates a bmp image from data" << endl
+         << "quit                Quits the program" << endl << endl;
 }
 
 
+void printOpener()
+{
+    cout << "=================================================" << endl
+         << "               Welcome to CoolPics" << endl
+         << "=================================================" << endl << endl;
+}
+
+void printCloser()
+{
+    cout << "=================================================" << endl
+         << "            Thanks for using CoolPics!" << endl
+         << "=================================================" << endl;
+}
+
+string openFile(ifstream& ins)
+{
+    string fileName;
+
+    // close stream if open
+    if (ins.is_open())
+    {
+        ins.clear();
+        ins.close();
+    }
+
+    // get filename
+    cin >> fileName;
+    fileName = fileName + ".txt";
+    ins.open(fileName);
+
+    // keep retrying if failed to open
+    while (ins.fail())
+    {
+        cout << "Error in opening " << fileName
+             << ". Enter another file name: ";
+        ins.clear();
+        cin >> fileName;
+        fileName = fileName + ".txt";
+        ins.open(fileName);
+    }
+
+    return fileName;
+}
