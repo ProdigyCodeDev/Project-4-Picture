@@ -69,7 +69,7 @@ int Point::checkRange(int val) {
         return 0;
     }
     else if (val >= 100) {
-        return 99;
+        return 100 - 1;
     }
     else {
         return val;
