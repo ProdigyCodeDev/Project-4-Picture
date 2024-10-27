@@ -66,13 +66,13 @@ Color Circle::getColor() {
 }
 
 // Reads the circle's center, radius, and color from input stream.
-void Circle::read(istream &ins) {
+void Circle::read(istream& ins) {
     ins >> center >> radius >> color;
     radius = checkRadius(radius);
 }
 
 // Writes the circle's center, radius, and color to output stream.
-void Circle::write(ostream &outs) {
+void Circle::write(ostream& outs) {
     outs << center << " " << radius << " " << color;
 }
 
@@ -94,7 +94,7 @@ ostream& operator << (ostream& outs, Circle circle)
     return outs;
 }
 
-void Circle::draw(Graphics & drawer)
+void Circle::draw(Graphics& drawer)
 {
     int radius = min(getRadius(), (int)DIMENSION);
     int error = -radius;
