@@ -1,4 +1,4 @@
-/**
+**
  * Triangle.cpp
  * Project UID 2e6ea4e086ea6a06753e819c30923369
  *
@@ -40,7 +40,10 @@ Triangle::Triangle(Point pt1, Color color1, Point pt2, Color color2, Point pt3, 
 }
 
 void Triangle::setColor(Color color) {
-    
+    setVertexOneColor(color);
+    setVertexTwoColor(color);
+    setVertexThreeColor(color);
+
 
 }
 
