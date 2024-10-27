@@ -59,12 +59,12 @@ Color Line::getColor() {
     return lineColor;
 }
 
-void Line::read(istream& ins){
+void Line::read(istream& ins) {
     ins >> start >> end >> lineColor;
 }
 
 void Line::write(ostream& outs) {
-    outs << start << " " <<  end << " " << lineColor << endl;
+    outs << start << " " << end << " " << lineColor << endl;
 
 }
 
@@ -72,8 +72,8 @@ void Line::write(ostream& outs) {
 
 
 
- // Your code goes above this line.
- // Don't change the implementations below!
+// Your code goes above this line.
+// Don't change the implementations below!
 
 istream& operator >> (istream& ins, Line& line)
 {
