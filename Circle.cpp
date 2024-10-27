@@ -5,10 +5,10 @@
  * EECS 183
  * Project 4: CoolPics
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * Chen Li, Christopher Purnawan
+ * lichenlc, chrislp
  *
- * <#Description#>
+ * The implementations of Circle class.
  */
 
 #include "Circle.h"
@@ -18,7 +18,7 @@
 #include <algorithm>
 using namespace std;
 
-// Initializes the circle with a default center
+// Initializes the circle with a default center, radius, and color.
 Circle::Circle() {
     center;
     radius = 0;
@@ -66,18 +66,15 @@ Color Circle::getColor() {
 }
 
 // Reads the circle's center, radius, and color from input stream.
-void Circle::read(istream& ins) {
+void Circle::read(istream &ins) {
     ins >> center >> radius >> color;
     radius = checkRadius(radius);
 }
 
 // Writes the circle's center, radius, and color to output stream.
-void Circle::write(ostream& outs) {
+void Circle::write(ostream &outs) {
     outs << center << " " << radius << " " << color;
 }
-
-
-
 
 // Your code goes above this line.
 // Don't change the implementations below!
@@ -94,7 +91,7 @@ ostream& operator << (ostream& outs, Circle circle)
     return outs;
 }
 
-void Circle::draw(Graphics& drawer)
+void Circle::draw(Graphics & drawer)
 {
     int radius = min(getRadius(), (int)DIMENSION);
     int error = -radius;
