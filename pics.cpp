@@ -70,7 +70,7 @@ string tolower(string str);
  *        Read the shape:  L reads a line, C reads a circle, T read a triangle
  *            R reads a rectangle.
  *            For any other character:
- *              1. clears drawer 
+ *              1. clears drawer
  *              2. prints "[Error in input file: " << character already read
  *                     "]" << endl;
  *              3. close file
@@ -129,73 +129,70 @@ void coolPics()
     }
 
     printCloser();
-    
+
     return;
 }
 
-// Writes the current drawing on the Graphics canvas to a BMP file.
 void writeFile(const Graphics& drawer)
 {
     string fileName;
     cin >> fileName;
     fileName += ".bmp";
-    
+
     drawer.writeFile(fileName);
     cout << "[Wrote " << fileName << "]" << endl;
 }
 
-// Loads shapes from a file and draws them on the Graphics canvas.
 void loadFile(Graphics& drawer)
 {
     ifstream file;
     string fileName = openFile(file);
     char shapeType;
-    
-    drawer.clear();
-    
-    while (file >> shapeType) {
-            if (shapeType == 'L') {
-                Point pt1, pt2;
-                Color color;
-                file >> pt1 >> pt2 >> color;
-                Line line(pt1, pt2, color);
-                line.draw(drawer);
-            }
-            else if (shapeType == 'C') {
-                Point center;
-                int radius;
-                Color color;
-                file >> center >> radius >> color;
-                Circle circle(center, radius, color);
-                circle.draw(drawer);
-            }
-            else if (shapeType == 'T') {
-                Point pt1, pt2, pt3;
-                Color color1, color2, color3;
-                file >> pt1 >> color1 >> pt2 >> color2 >> pt3 >> color3;
-                Triangle triangle(pt1, color1, pt2, color2, pt3, color3);
-                triangle.draw(drawer);
-            }
-            else if (shapeType == 'R') {
-                Point p1, p2;
-                Color cTopL, cTopR, cBottomL, cBottomR;
-                file >> p1 >> p2 >> cTopL >> cTopR >> cBottomR >> cBottomL;
-                Rectangle rectangle(p1, p2, cTopL, cTopR, cBottomR, cBottomL);
-                rectangle.draw(drawer);
-            }
-            else {
-                drawer.clear();
-                cout << "[Error in input file: " << shapeType << "]" << endl;
-                file.close();
-                return;
-            }
-        }
 
-        file.close();
-        cout << "[Loaded " << fileName << "]" << endl;
+    drawer.clear();
+
+    while (file >> shapeType) {
+        if (shapeType == 'L') {
+            Point pt1, pt2;
+            Color color;
+            file >> pt1 >> pt2 >> color;
+            Line line(pt1, pt2, color);
+            line.draw(drawer);
+        }
+        else if (shapeType == 'C') {
+            Point center;
+            int radius;
+            Color color;
+            file >> center >> radius >> color;
+            Circle circle(center, radius, color);
+            circle.draw(drawer);
+        }
+        else if (shapeType == 'T') {
+            Point pt1, pt2, pt3;
+            Color color1, color2, color3;
+            file >> pt1 >> color1 >> pt2 >> color2 >> pt3 >> color3;
+            Triangle triangle(pt1, color1, pt2, color2, pt3, color3);
+            triangle.draw(drawer);
+        }
+        else if (shapeType == 'R') {
+            Point p1, p2;
+            Color cTopL, cTopR, cBottomL, cBottomR;
+            file >> p1 >> p2 >> cTopL >> cTopR >> cBottomR >> cBottomL;
+            Rectangle rectangle(p1, p2, cTopL, cTopR, cBottomR, cBottomL);
+            rectangle.draw(drawer);
+        }
+        else {
+            drawer.clear();
+            cout << "[Error in input file: " << shapeType << "]" << endl;
+            file.close();
+            return;
+        }
     }
 
-// Converts an input string to all lowercase characters.
+    file.close();
+    cout << "[Loaded " << fileName << "]" << endl;
+}
+
 string tolower(string str) {
     string newString = "";
     int length = str.length();
@@ -210,30 +207,32 @@ string tolower(string str) {
     }
     return newString;
 }
+
+
 // Don't change the implementations below!
 
 void printMenu()
 {
     cout << "Command:            Description:" << endl
-         << "--------            ------------" << endl
-         << "load filename       Loads data from a txt file" << endl
-         << "write filename      Creates a bmp image from data" << endl
-         << "quit                Quits the program" << endl << endl;
+        << "--------            ------------" << endl
+        << "load filename       Loads data from a txt file" << endl
+        << "write filename      Creates a bmp image from data" << endl
+        << "quit                Quits the program" << endl << endl;
 }
 
 
 void printOpener()
 {
     cout << "=================================================" << endl
-         << "               Welcome to CoolPics" << endl
-         << "=================================================" << endl << endl;
+        << "               Welcome to CoolPics" << endl
+        << "=================================================" << endl << endl;
 }
 
 void printCloser()
 {
     cout << "=================================================" << endl
-         << "            Thanks for using CoolPics!" << endl
-         << "=================================================" << endl;
+        << "            Thanks for using CoolPics!" << endl
+        << "=================================================" << endl;
 }
 
 string openFile(ifstream& ins)
@@ -256,7 +255,7 @@ string openFile(ifstream& ins)
     while (ins.fail())
     {
         cout << "Error in opening " << fileName
-             << ". Enter another file name: ";
+            << ". Enter another file name: ";
         ins.clear();
         cin >> fileName;
         fileName = fileName + ".txt";
