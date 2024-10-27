@@ -63,6 +63,7 @@ void test_Circle() {
     Circle c3(Point(3, 3), 5, Color(100, 100, 100));
     cout << "expected" << c3;
     Circle c2;
+    Circle c4;
     c2.setCenter(Point(3, 3));
     cout << "expected" << c2.getCenter();
     c2.setRadius(3);
@@ -71,11 +72,19 @@ void test_Circle() {
     cout << "expected" << c2.getColor();
     cout << "expected" << c2;
 
+    c4.setCenter(Point(3, 3));
+    cout << "expected" << c4.getCenter();
+    c4.setRadius(-5);
+    cout << "expected" << c4.getRadius();
+    c4.setColor(Color(50, 50, 50));
+    cout << "expected" << c4.getColor();
+    cout << "expected" << c4;
 }
 
 
 
 void test_Rectangle() {
+    Rectangle r4;
     Rectangle r1;
     cout << "expected" << r1;
     Rectangle r2(Point(0, 10), Point(10, 10), Color(0, 0, 0), Color(100, 100, 100), Color(50, 50, 50), Color(100, 100, 100));
@@ -98,9 +107,19 @@ void test_Rectangle() {
     cout << "expected" << r3.getColorTopLeft();
     cout << "expected" << r3;
 
+    r4.setStart(Point(50, 50));
+    r4.setEnd(Point(100, 100));
+    r4.setColor(Color(-100, 100, 300));
+    cout << "expected" << r4.getColorBottomRight();
+    cout << "expected" << r4.getColorBottomLeft();
+    cout << "expected" << r4.getColorTopRight();
+    cout << "expected" << r4.getColorTopLeft();
+    cout << "expected" << r4;
+
 }
 
 void test_Color() {
+    Color co5;
     Color co1;
     cout << "expected" << co1;
     Color co2(255, 0, 0);
@@ -108,11 +127,16 @@ void test_Color() {
     Color co3(-100, 300, 150);
     co1.setRed(130);
     co1.setGreen(-50);
-    co1.setBlue(300);
+    co1.setBlue(-100);
     cout << "expected" << co1.getBlue();
     cout << "expected" << co1.getGreen();
     cout << "expected" << co1.getRed();
     cout << "expected" << co3;
+
+    co5.setBlue(100);
+    cout << "expected" << co1.getBlue();
+
+    
 }
 
 void test_Line() {
@@ -179,6 +203,8 @@ void test_Point() {
 
     return;
 }
+
+
 
 
 
