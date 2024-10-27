@@ -59,14 +59,17 @@ void startTests() {
 
 void test_Circle() {
     Circle c1;
-    Circle(Point(3, 3), 5, Color(100, 100, 100));
+    cout << "expected" << c1;
+    Circle c3(Point(3, 3), 5, Color(100, 100, 100));
+    cout << "expected" << c3;
     Circle c2;
     c2.setCenter(Point(3, 3));
-    c2.getCenter();
+    cout << "expected" << c2.getCenter();
     c2.setRadius(3);
-    c2.getRadius();
+    cout << "expected" << c2.getRadius();
     c2.setColor(Color(50, 50, 50));
-    c2.getColor();
+    cout << "expected" << c2.getColor();
+    cout << "expected" << c2;
 
 }
 
@@ -74,12 +77,14 @@ void test_Circle() {
 
 void test_Rectangle() {
     Rectangle r1;
+    cout << "expected" << r1;
     Rectangle r2(Point(0, 10), Point(10, 10), Color(0, 0, 0), Color(100, 100, 100), Color(50, 50, 50), Color(100, 100, 100));
+    cout << "expected" << r2;
     Rectangle r3;
     r3.setStart(Point(50, 50));
     r3.setEnd(Point(100, 100));
-    r3.getStart();
-    r3.getEnd();
+    cout << "expected" << r3.getStart();
+    cout << "expected" << r3.getEnd();
     r3.setColor(Color(100, 100, 100));
     r3.setColorTopRight(Color(50, 50, 50));
     r3.setColorTopLeft(Color(50, 50, 50));
@@ -87,35 +92,42 @@ void test_Rectangle() {
     r3.setColorBottomRight(Color(50, 50, 50));
     r3.setColorBottomLeft(Color(50, 50, 50));
 
-    r3.getColorBottomRight();
-    r3.getColorBottomLeft();
-    r3.getColorTopRight();
-    r3.getColorTopLeft();
+    cout << "expected" << r3.getColorBottomRight();
+    cout << "expected" << r3.getColorBottomLeft();
+    cout << "expected" << r3.getColorTopRight();
+    cout << "expected" << r3.getColorTopLeft();
+    cout << "expected" << r3;
 
 }
 
 void test_Color() {
-    Color c1;
-    Color c2(255, 0, 0);
-    Color c3(-100, 300, 150);
-    c1.setRed(130);
-    c1.setGreen(-50);
-    c1.setBlue(300);
-    c1.getBlue();
-    c1.getGreen();
-    c1.getRed();
+    Color co1;
+    cout << "expected" << co1;
+    Color co2(255, 0, 0);
+    cout << "expected" << co2;
+    Color co3(-100, 300, 150);
+    co1.setRed(130);
+    co1.setGreen(-50);
+    co1.setBlue(300);
+    cout << "expected" << co1.getBlue();
+    cout << "expected" << co1.getGreen();
+    cout << "expected" << co1.getRed();
+    cout << "expected" << co3;
 }
 
 void test_Line() {
     Line l1;
     Line l2;
     l2.setStart(Point (10, 10));
-    l2.getStart();
+    cout << "expected" << l2.getStart();
     l2.setEnd(Point(5,5));
-    l2.getEnd();
+    cout << "expected" << l2.getEnd();
     l2.setColor(Color(255,155,0));
-    l2.getColor();
+    cout << "expected" << l2.getColor();
     Line l3(Point(0, 5), Point(4, 3), Color(0, 100, 100));
+    cout << "expected" << l1;
+    cout << "expected" << l2;
+    cout << "expected" << l3;
 }
 
 void test_Triangle() {
@@ -125,18 +137,22 @@ void test_Triangle() {
     t2.setVertexOne(Point(0, 100));
     t2.setVertexTwo(Point(10, 50));
     t2.setVertexThree(Point(50, 50));
-    t2.getVertexOne();
-    t2.getVertexTwo();
-    t2.getVertexThree();
+    cout << "expected" << t2.getVertexOne();
+    cout << "expected" << t2.getVertexTwo();
+    cout << "expected" << t2.getVertexThree();
     t2.setVertexTwoColor(Color(100, 200, 200));
     t2.setVertexOneColor(Color(100, 200, 200));
     t2.setVertexThreeColor(Color(100, 200, 200));
-    t2.getVertexOneColor();
-    t2.getVertexTwoColor();
-    t2.getVertexThreeColor();
+    cout << "expected" << t2.getVertexOneColor();
+    cout << "expected" << t2.getVertexTwoColor();
+    cout << "expected" << t2.getVertexThreeColor();
     
 
     Triangle t3(Point(10, 50), Color(0, 0, 0), Point(20, 30), Color(100, 100, 100), Point(30, 50), Color(50, 50, 50));
+
+    cout << "expected" << t1;
+    cout << "expected" << t2;
+    cout << "expected" << t3;
 }
 
 
