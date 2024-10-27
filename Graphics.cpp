@@ -5,8 +5,8 @@
  * EECS 183
  * Project 4: CoolPics
  *
- * Chen Li
- * lichenlc
+ * Chen Li, Christopher Purnawan
+ * lichenlc, chrislp
  *
  * The implementations of Graphics class.
  */
@@ -24,8 +24,8 @@ using namespace std;
 
 // Initializes the pixelData array to set all pixels to balck.
 Graphics::Graphics() {
-    for (int x = 0; x < DIMENSION; x++) {
-        for (int y = 0; y < DIMENSION; y++) {
+    for (int x = 0; x < 100; x++) {
+        for (int y = 0; y < 100; y++) {
             pixelData[x][y] = Color();
         }
     }
@@ -36,9 +36,9 @@ void Graphics::clear() {
     initArray();
 }
 
-// Sets the color at (x, y) coordinates within the bounds [0, DIMENSION).
+// Sets the color at (x, y) coordinates within the bounds [0, 100).
 void Graphics::setPixel(int x, int y, Color color) {
-    if (x >= 0 && y >= 0 && x < DIMENSION && y < DIMENSION) {
+    if (x >= 0 && y >= 0 && x < 100 && y < 100) {
         pixelData[y][x] = color;
     }
 }
@@ -46,13 +46,12 @@ void Graphics::setPixel(int x, int y, Color color) {
 // Initializes the pixelData array by setting all pixels to black.
 void Graphics::initArray() {
     Color black(0, 0, 0);
-    for (int x = 0; x < DIMENSION; x++) {
-        for (int y = 0; y < DIMENSION; y++) {
+    for (int x = 0; x < 100; x++) {
+        for (int y = 0; y < 100; y++) {
             pixelData[x][y] = black;
         }
     }
 }
-
 
 // Your code goes above this line.
 // Don't change the implementation below!
@@ -103,8 +102,8 @@ void Graphics::writeFile(string fileName) const
             Color pixel = pixelData[i][j];
 
             // write RGB triple to outfile
-            outFile << (BYTE)pixel.getBlue() << (BYTE)pixel.getGreen()
-                << (BYTE)pixel.getRed();
+            outFile << (BYTE) pixel.getBlue() << (BYTE) pixel.getGreen()
+            << (BYTE) pixel.getRed();
         }
 
         // write padding to outfile
