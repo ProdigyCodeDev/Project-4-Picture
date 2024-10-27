@@ -13,7 +13,7 @@
 
 #include "Point.h"
 
-// for the declaration of DIMENSION
+ // for the declaration of DIMENSION
 #include "utility.h"
 
 // Initializes the point to the origin (0, 0).
@@ -49,7 +49,7 @@ int Point::getY() {
 }
 
 // Reads a point from the input stream and calls checkRange().
-void Point::read(istream &ins) {
+void Point::read(istream& ins) {
     char character;
     ins >> character >> x >> character >> y >> character;
     x = checkRange(x);
@@ -57,7 +57,7 @@ void Point::read(istream &ins) {
 }
 
 // Writes the point to the output stream in the format (x, y).
-void Point::write(ostream &outs) {
+void Point::write(ostream& outs) {
     outs << "(" << x << "," << y << ")";
 }
 
@@ -79,7 +79,7 @@ int Point::checkRange(int val) {
 // Your code goes above this line.
 // Don't change the implementations below!
 
-istream& operator >> (istream& ins,  Point& pt)
+istream& operator >> (istream& ins, Point& pt)
 {
     pt.read(ins);
     return ins;
