@@ -103,8 +103,8 @@ void Graphics::writeFile(string fileName) const
             Color pixel = pixelData[i][j];
 
             // write RGB triple to outfile
-            outFile << (BYTE) pixel.getBlue() << (BYTE) pixel.getGreen()
-            << (BYTE) pixel.getRed();
+            outFile << (BYTE)pixel.getBlue() << (BYTE)pixel.getGreen()
+                << (BYTE)pixel.getRed();
         }
 
         // write padding to outfile
