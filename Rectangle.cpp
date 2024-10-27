@@ -32,10 +32,10 @@ Rectangle::Rectangle() {
 
 // Initialize the start and end points, and the colors for all four corners.
 Rectangle::Rectangle(Point pt1, Point pt2, Color cTopLeft, Color cTopRight,
-                     Color cBottomRight, Color cBottomLeft) {
+    Color cBottomRight, Color cBottomLeft) {
     start = pt1;
     end = pt2;
-    
+
     colorTopLeft = cTopLeft;
     colorTopRight = cTopRight;
     colorBottomLeft = cBottomLeft;
@@ -111,15 +111,15 @@ Color Rectangle::getColorBottomLeft() {
 }
 
 // Read the start&end points and four corners's colos from the input stream.
-void Rectangle::read(istream &ins) {
+void Rectangle::read(istream& ins) {
     ins >> start >> end >> colorTopLeft >> colorTopRight
-    >> colorBottomRight >> colorBottomLeft;
+        >> colorBottomRight >> colorBottomLeft;
 }
 
 // Write the start&end points and four corners's colos to the output stream.
-void Rectangle::write(ostream &outs) {
+void Rectangle::write(ostream& outs) {
     outs << start << " " << end << " " << colorTopLeft << " " << colorTopRight
-    << " " << colorBottomRight << " " << colorBottomLeft;
+        << " " << colorBottomRight << " " << colorBottomLeft;
 }
 
 // Your code goes above this line.
@@ -137,7 +137,7 @@ ostream& operator << (ostream& outs, Rectangle rectangle)
     return outs;
 }
 
-void Rectangle::draw(Graphics & drawer)
+void Rectangle::draw(Graphics& drawer)
 {
     // four points of rectangles
     Point topLeft = start;
@@ -147,26 +147,26 @@ void Rectangle::draw(Graphics & drawer)
 
     // center point and color by averaging
     Point center((start.getX() + end.getX()) / 2,
-                 (start.getY() + end.getY()) / 2);
+        (start.getY() + end.getY()) / 2);
     Color colorCenter((colorTopLeft.getRed() + colorTopRight.getRed() +
-                       colorBottomRight.getRed() +
-                       colorBottomLeft.getRed()) / 4,
-                      (colorTopLeft.getGreen() + colorTopRight.getGreen() +
-                       colorBottomRight.getGreen() +
-                       colorBottomLeft.getGreen()) / 4,
-                      (colorTopLeft.getBlue() + colorTopRight.getBlue() +
-                       colorBottomRight.getBlue() +
-                       colorBottomLeft.getBlue()) / 4);
+        colorBottomRight.getRed() +
+        colorBottomLeft.getRed()) / 4,
+        (colorTopLeft.getGreen() + colorTopRight.getGreen() +
+            colorBottomRight.getGreen() +
+            colorBottomLeft.getGreen()) / 4,
+        (colorTopLeft.getBlue() + colorTopRight.getBlue() +
+            colorBottomRight.getBlue() +
+            colorBottomLeft.getBlue()) / 4);
 
     // four triangles to represent rectangle
     Triangle top(topLeft, colorTopLeft, topRight, colorTopRight,
-                 center, colorCenter);
+        center, colorCenter);
     Triangle bottom(bottomLeft, colorBottomLeft, bottomRight, colorBottomRight,
-                    center, colorCenter);
+        center, colorCenter);
     Triangle left(topLeft, colorTopLeft, bottomLeft, colorBottomLeft,
-                  center, colorCenter);
+        center, colorCenter);
     Triangle right(topRight, colorTopRight, bottomRight, colorBottomRight,
-                   center, colorCenter);
+        center, colorCenter);
     top.draw(drawer);
     bottom.draw(drawer);
     left.draw(drawer);
