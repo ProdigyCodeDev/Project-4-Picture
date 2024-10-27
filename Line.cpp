@@ -5,18 +5,16 @@
  * EECS 183
  * Project 4: CoolPics
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * Chen Li, Christopher Purnawan
+ * lichenlc, chrislp
  *
- * <#Description#>
+ * The implementations of Line class.
  */
 
 #include "Line.h"
 #include "Graphics.h"
 
- // TODO: implement two Line constructors, setStart, getStart, setEnd,
- //       getEnd, setColor, getColor, read, write.
-
+// Initializing a line with default start and end points and default color.
 Line::Line() {
     Point start;
     Point end;
@@ -24,53 +22,52 @@ Line::Line() {
 
 }
 
+// Initializing line with specific start, end points, and color.
 Line::Line(Point pt1, Point pt2, Color color) {
     Line::setStart(pt1);
     Line::setEnd(pt2);
     Line::setColor(color);
 }
 
+// Sets the start point of the line.
 void Line::setStart(Point pt) {
     start = pt;
-
 }
 
+// Returns the start point of the line.
 Point Line::getStart() {
     return start;
-
 }
+
+// Sets the end point of the line.
 void Line::setEnd(Point pt) {
     end = pt;
-
 }
 
-
+// Returns the end point of the line.
 Point Line::getEnd() {
     return end;
-
 }
 
+// Sets the color of the line.
 void Line::setColor(Color color) {
     lineColor = color;
-
 }
 
+// Returns the color of the line.
 Color Line::getColor() {
     return lineColor;
 }
 
+// Reads start point, end point, and color from an input stream.
 void Line::read(istream& ins) {
     ins >> start >> end >> lineColor;
 }
 
+// Writes start point, end point, and color to an output stream
 void Line::write(ostream& outs) {
-    outs << start << " " << end << " " << lineColor << endl;
-
+    outs << start << " " <<  end << " " << lineColor << endl;
 }
-
-
-
-
 
 // Your code goes above this line.
 // Don't change the implementations below!
@@ -87,7 +84,7 @@ ostream& operator << (ostream& outs, Line line)
     return outs;
 }
 
-void Line::draw(Graphics& drawer)
+void Line::draw(Graphics &drawer)
 {
     /**
      * This function is based on the Bresenham's line algorithm and is highly
@@ -146,12 +143,12 @@ void Line::draw(Graphics& drawer)
     }
 
 
-    int dy = p2y - p1y;  // y-increment from p1 to p2
-    int dx = p2x - p1x;  // x-increment from p1 to p2
-    int dy2 = (dy << 1);  // dy << 1 == 2*dy  i.e., bit shifting
-    int dx2 = (dx << 1);
+    int dy            = p2y - p1y;  // y-increment from p1 to p2
+    int dx            = p2x - p1x;  // x-increment from p1 to p2
+    int dy2           = (dy << 1);  // dy << 1 == 2*dy  i.e., bit shifting
+    int dx2           = (dx << 1);
     int dy2_minus_dx2 = dy2 - dx2;  // precompute constant for speed up
-    int dy2_plus_dx2 = dy2 + dx2;
+    int dy2_plus_dx2  = dy2 + dx2;
 
 
     if (dy >= 0)    // m >= 0
